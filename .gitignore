@@ -1,0 +1,14 @@
+node_modules
+dist
+dist-ssr
+*.local
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log
+
+# Reference only — not part of tpf-frontend app
+BudgetSplit.make
+docs/
+BudgetSplit mobile wireframes/
