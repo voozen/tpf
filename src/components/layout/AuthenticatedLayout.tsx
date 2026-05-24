@@ -5,6 +5,7 @@ import { MobileShell } from '@/components/layout/MobileShell';
 
 const NAV_PATHS = new Set([
   '/home',
+  '/expenses',
   '/groups',
   '/insights',
   '/profile',

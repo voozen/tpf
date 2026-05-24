@@ -1,11 +1,11 @@
-import { Home, PlusCircle, TrendingUp, User, Users } from 'lucide-react';
+import { Home, PlusCircle, Receipt, TrendingUp, User } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { APP_FONT_FAMILY } from '@/lib/constants';
 
 const tabs = [
   { id: 'home', label: 'Home', icon: Home, path: '/home' },
-  { id: 'groups', label: 'Groups', icon: Users, path: '/groups' },
+  { id: 'expenses', label: 'Expenses', icon: Receipt, path: '/expenses' },
   { id: 'add', label: 'Add', icon: PlusCircle, path: '/add-receipt' },
   { id: 'insights', label: 'Insights', icon: TrendingUp, path: '/insights' },
   { id: 'profile', label: 'Profile', icon: User, path: '/profile' },
@@ -13,13 +13,17 @@ const tabs = [
 
 function getActiveTab(pathname: string): string {
   if (pathname === '/home') return 'home';
-  if (pathname.startsWith('/groups') || pathname.startsWith('/group-dashboard')) {
-    return 'groups';
+  if (
+    pathname.startsWith('/expenses') ||
+    pathname.startsWith('/groups') ||
+    pathname.startsWith('/group-dashboard')
+  ) {
+    return 'expenses';
   }
   if (pathname.startsWith('/add') || pathname.startsWith('/split-items')) return 'add';
   if (pathname === '/insights') return 'insights';
   if (pathname === '/profile') return 'profile';
-  if (pathname.startsWith('/settlement')) return 'groups';
+  if (pathname.startsWith('/settlement')) return 'expenses';
   return '';
 }
 
