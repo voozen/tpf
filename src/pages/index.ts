@@ -1,4 +1,3 @@
-export { PlaceholderPage } from './PlaceholderPage';
 export { UiShowcasePage } from './dev/UiShowcasePage';
 
 export { SplashPage } from './auth/SplashPage';

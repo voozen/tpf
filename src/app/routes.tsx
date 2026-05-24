@@ -8,15 +8,20 @@ import {
   ForgotPasswordPage,
   HomePage,
   OnboardingPage,
-  PlaceholderPage,
   SignInPage,
   SignUpPage,
   SplashPage,
   UiShowcasePage,
 } from '@/pages';
-import { GroupsListPage } from '@/pages/groups/GroupsListPage';
-
-const screen = (title: string) => <PlaceholderPage title={title} />;
+import { AddReceiptPage } from '@/pages/expenses/AddReceiptPage';
+import { AddTransferPage } from '@/pages/expenses/AddTransferPage';
+import { SplitItemsPage } from '@/pages/expenses/SplitItemsPage';
+import { ExpensesPage } from '@/pages/expenses/ExpensesPage';
+import { GroupDashboardPage } from '@/pages/groups/GroupDashboardPage';
+import { InsightsPage } from '@/pages/insights/InsightsPage';
+import { ProfilePage } from '@/pages/profile/ProfilePage';
+import { SettlementPage } from '@/pages/settlement/SettlementPage';
+import { SettlementSelectionPage } from '@/pages/settlement/SettlementSelectionPage';
 
 export const routes: RouteObject[] = [
   { path: '/', element: <Navigate to="/splash" replace /> },
@@ -27,11 +32,11 @@ export const routes: RouteObject[] = [
       {
         element: <GuestLayout />,
         children: [
-      { path: '/splash', element: <SplashPage /> },
-      { path: '/onboarding', element: <OnboardingPage /> },
-      { path: '/signin', element: <SignInPage /> },
-      { path: '/signup', element: <SignUpPage /> },
-      { path: '/forgot-password', element: <ForgotPasswordPage /> },
+          { path: '/splash', element: <SplashPage /> },
+          { path: '/onboarding', element: <OnboardingPage /> },
+          { path: '/signin', element: <SignInPage /> },
+          { path: '/signup', element: <SignUpPage /> },
+          { path: '/forgot-password', element: <ForgotPasswordPage /> },
         ],
       },
     ],
@@ -44,18 +49,19 @@ export const routes: RouteObject[] = [
         element: <AuthenticatedLayout />,
         children: [
           { path: '/home', element: <HomePage /> },
-          { path: '/groups', element: <GroupsListPage /> },
+          { path: '/expenses', element: <ExpensesPage /> },
+          { path: '/groups', element: <Navigate to="/expenses" replace /> },
+          { path: '/group-dashboard', element: <GroupDashboardPage /> },
 
-          { path: '/add-receipt', element: screen('Add Receipt') },
-          { path: '/split-items', element: screen('Split Items') },
-          { path: '/add-transfer', element: screen('Add Transfer') },
+          { path: '/add-receipt', element: <AddReceiptPage /> },
+          { path: '/split-items', element: <SplitItemsPage /> },
+          { path: '/add-transfer', element: <AddTransferPage /> },
 
-          { path: '/group-dashboard', element: screen('Group Dashboard') },
-          { path: '/settlement-selection', element: screen('Settle Debts') },
-          { path: '/settlement', element: screen('Settlement') },
+          { path: '/settlement-selection', element: <SettlementSelectionPage /> },
+          { path: '/settlement', element: <SettlementPage /> },
 
-          { path: '/insights', element: screen('Insights') },
-          { path: '/profile', element: screen('Profile') },
+          { path: '/insights', element: <InsightsPage /> },
+          { path: '/profile', element: <ProfilePage /> },
         ],
       },
     ],
