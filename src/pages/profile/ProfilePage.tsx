@@ -88,8 +88,8 @@ export function ProfilePage() {
   const withdrawExceedsBalance =
     !Number.isNaN(parsedWithdrawAmount) && parsedWithdrawAmount > data.appBalance;
 
-  const handleSignOut = () => {
-    logout();
+  const handleSignOut = async () => {
+    await logout();
     navigate('/signin');
   };
 

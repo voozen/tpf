@@ -9,7 +9,7 @@ import { APP_FONT_FAMILY } from '@/lib/constants';
 
 export function SignInPage() {
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, loginWithGoogle } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -33,16 +33,21 @@ export function SignInPage() {
     try {
       await login(email, password);
       navigate('/home', { replace: true });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Sign in failed');
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const handleGoogle = async () => {
+    setError('');
     setIsSubmitting(true);
     try {
-      await login('user@gmail.com', 'google-stub');
+      await loginWithGoogle();
       navigate('/home', { replace: true });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Google sign in failed');
     } finally {
       setIsSubmitting(false);
     }

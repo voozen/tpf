@@ -5,15 +5,18 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FormError } from '@/components/auth/FormError';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useAuth } from '@/contexts/AuthContext';
 import { APP_FONT_FAMILY } from '@/lib/constants';
 
 export function ForgotPasswordPage() {
   const navigate = useNavigate();
+  const { resetPassword } = useAuth();
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [emailSent, setEmailSent] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleResetPassword = (e: React.FormEvent) => {
+  const handleResetPassword = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
 
@@ -27,7 +30,15 @@ export function ForgotPasswordPage() {
       return;
     }
 
-    setEmailSent(true);
+    setIsSubmitting(true);
+    try {
+      await resetPassword(email);
+      setEmailSent(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to send reset email');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -83,7 +94,7 @@ export function ForgotPasswordPage() {
 
               {error && <FormError message={error} />}
 
-              <Button type="submit" size="lg" className="w-full">
+              <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
                 Send reset link
               </Button>
             </form>

@@ -10,7 +10,7 @@ import { APP_FONT_FAMILY } from '@/lib/constants';
 
 export function SignUpPage() {
   const navigate = useNavigate();
-  const { signUp } = useAuth();
+  const { signUp, loginWithGoogle } = useAuth();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -46,16 +46,21 @@ export function SignUpPage() {
     try {
       await signUp(name, email, password);
       navigate('/home', { replace: true });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Sign up failed');
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const handleGoogle = async () => {
+    setError('');
     setIsSubmitting(true);
     try {
-      await signUp('John Doe', 'user@gmail.com', 'google-stub');
+      await loginWithGoogle();
       navigate('/home', { replace: true });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Google sign up failed');
     } finally {
       setIsSubmitting(false);
     }
