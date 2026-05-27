@@ -21,6 +21,7 @@ import { GroupDashboardPage } from '@/pages/groups/GroupDashboardPage';
 import { InsightsPage } from '@/pages/insights/InsightsPage';
 import { ProfilePage } from '@/pages/profile/ProfilePage';
 import { SettlementPage } from '@/pages/settlement/SettlementPage';
+import { NotFoundPage } from '@/pages/NotFoundPage';
 import { SettlementSelectionPage } from '@/pages/settlement/SettlementSelectionPage';
 
 export const routes: RouteObject[] = [
@@ -69,5 +70,5 @@ export const routes: RouteObject[] = [
 
   { path: '/dev/ui', element: <UiShowcasePage /> },
 
-  { path: '*', element: <Navigate to="/splash" replace /> },
+  { path: '*', element: <NotFoundPage /> },
 ];
