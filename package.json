@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "serve -s dist -l ${PORT:-3000}"
   },
   "dependencies": {
     "@hotjar/browser": "^1.0.9",
@@ -20,6 +21,7 @@
     "react-ga4": "^3.0.1",
     "react-router-dom": "^7.14.2",
     "recharts": "^3.8.1",
+    "serve": "^14.2.4",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.2.0"
   },
