@@ -1,8 +1,16 @@
-function hostnameAllowed(hostname: string, hostnames: string[] | undefined): boolean {
+function hostnameAllowed(
+  hostname: string,
+  hostnames: string[] | undefined,
+  allowSubdomains?: number,
+): boolean {
   if (!hostnames?.length) return false;
 
+  // Contentsquare uses hostnames: [""] + allowSubdomains: 1 for "any domain".
+  const onlyEmpty = hostnames.every((entry) => !entry);
+  if (onlyEmpty && allowSubdomains === 1) return true;
+
   return hostnames.some((allowed) => {
-    if (!allowed) return hostname === '';
+    if (!allowed) return false;
     if (allowed.startsWith('.')) {
       const bare = allowed.slice(1);
       return hostname === bare || hostname.endsWith(allowed);
@@ -24,7 +32,7 @@ export function logContentsquareDiagnostics(): void {
       return;
     }
 
-    const allowed = hostnameAllowed(hostname, CS_CONF.hostnames);
+    const allowed = hostnameAllowed(hostname, CS_CONF.hostnames, CS_CONF.allowSubdomains);
     const hostnames = CS_CONF.hostnames?.join(', ') || '(none)';
 
     if (!allowed) {
