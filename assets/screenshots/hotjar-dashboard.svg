@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="720" height="400" viewBox="0 0 720 400">
-  <rect width="720" height="400" fill="#fff"/>
-  <text x="24" y="40" fill="#ff3c00" font-family="sans-serif" font-size="22" font-weight="bold">Hotjar  Recordings</text>
-  <rect x="24" y="80" width="672" height="48" rx="6" fill="#f1f5f9"/>
-  <rect x="24" y="140" width="672" height="48" rx="6" fill="#f8fafc"/>
-  <text x="360" y="280" text-anchor="middle" fill="#64748b" font-family="sans-serif" font-size="13">Replace with Hotjar dashboard screenshot after deploy</text>
-</svg>

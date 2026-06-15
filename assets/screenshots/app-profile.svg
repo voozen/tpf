@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="360" height="640" viewBox="0 0 360 640">
-  <rect width="360" height="640" fill="#f4f6fb"/>
-  <circle cx="180" cy="120" r="48" fill="#5b5fc7"/>
-  <text x="180" y="128" text-anchor="middle" fill="white" font-family="sans-serif" font-size="20">BS</text>
-  <text x="180" y="200" text-anchor="middle" fill="#334155" font-family="sans-serif" font-size="16" font-weight="bold">Profile</text>
-</svg>
