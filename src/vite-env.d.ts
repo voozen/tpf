@@ -5,6 +5,7 @@ interface ImportMetaEnv {
   readonly VITE_FIREBASE_AUTH_DOMAIN: string;
   readonly VITE_FIREBASE_PROJECT_ID: string;
   readonly VITE_FIREBASE_APP_ID: string;
+  readonly VITE_HOTJAR_SCRIPT_URL: string;
   readonly VITE_HOTJAR_SITE_ID: string;
   readonly VITE_GA_MEASUREMENT_ID: string;
 }

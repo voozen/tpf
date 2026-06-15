@@ -1,11 +1,13 @@
-import Hotjar from '@hotjar/browser';
 import { useEffect, type ReactNode } from 'react';
-import ReactGA from 'react-ga4';
 
-import { AnalyticsListener } from '@/components/tracking/AnalyticsListener';
+import { SpaPageviewListener } from '@/components/tracking/SpaPageviewListener';
+import { logContentsquareDiagnostics } from '@/lib/contentsquareDiagnostics';
+import { isGtagConfigured } from '@/lib/gtag';
+import { loadHotjar } from '@/lib/loadHotjar';
 
-const hotjarSiteId = import.meta.env.VITE_HOTJAR_SITE_ID;
-const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
+const hotjarEnabled = Boolean(
+  import.meta.env.VITE_HOTJAR_SCRIPT_URL || import.meta.env.VITE_HOTJAR_SITE_ID,
+);
 
 type TrackingProviderProps = {
   children: ReactNode;
@@ -13,23 +15,13 @@ type TrackingProviderProps = {
 
 export function TrackingProvider({ children }: TrackingProviderProps) {
   useEffect(() => {
-    if (hotjarSiteId) {
-      const siteId = Number(hotjarSiteId);
-      if (!Number.isNaN(siteId)) {
-        Hotjar.init(siteId, 6);
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    if (measurementId) {
-      ReactGA.initialize(measurementId);
-    }
+    loadHotjar();
+    logContentsquareDiagnostics();
   }, []);
 
   return (
     <>
-      {measurementId ? <AnalyticsListener /> : null}
+      {isGtagConfigured || hotjarEnabled ? <SpaPageviewListener /> : null}
       {children}
     </>
   );
