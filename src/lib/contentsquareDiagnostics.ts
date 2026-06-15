@@ -1,13 +1,13 @@
 function hostnameAllowed(
   hostname: string,
   hostnames: string[] | undefined,
-  allowSubdomains?: number,
+  allowSubdomains?: number | boolean,
 ): boolean {
   if (!hostnames?.length) return false;
 
   // Contentsquare uses hostnames: [""] + allowSubdomains: 1 for "any domain".
   const onlyEmpty = hostnames.every((entry) => !entry);
-  if (onlyEmpty && allowSubdomains === 1) return true;
+  if (onlyEmpty && (allowSubdomains === 1 || allowSubdomains === true)) return true;
 
   return hostnames.some((allowed) => {
     if (!allowed) return false;
